@@ -1,1 +1,57 @@
+/**
+ * @author Elmer Alay
+ * @version 1.0
+ * @since   04-12-2018
+*/
 
+package com.compi2.usac.analizadores; 
+
+import java_cup.runtime.*;
+
+parser code 
+{:
+    // Método al que se llama automáticamente ante algún error sintactico.
+    public void syntax_error(Symbol s){ 
+            System.err.println("Error Sintáctico en la Línea " + (s.left) +" Columna "+s.right+ ". No se esperaba este componente: " +s.value+"."); 
+    }
+ 
+    // Método al que se llama en el momento en que ya no es posible una recuperación de errores. 
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{ 
+            System.err.println("Error síntactico irrecuperable en la Línea " + (s.left)+ " Columna "+s.right+". Componente " + s.value + " no reconocido."); 
+    }  
+:} 
+
+terminal String number;
+terminal String plus, minus, by, divided;
+
+non terminal INICIO, OP;
+
+precedence left plus, minus;
+precedence left by, divided; 
+
+start with INICIO; 
+
+INICIO  ::= OP:n1   
+            {:              
+            :}
+;
+
+OP  ::=  OP:n1 plus OP:n2      
+        {:
+        :}
+    |   OP:n1 minus OP:n2     
+        {:
+        :}
+    |    OP:n1 by OP:n2        
+        {:
+        :}
+    |    OP:n1 divided OP:n2
+        {:
+        :}
+    |    minus OP:n1        
+        {:
+        :}
+    |    number:n1
+        {:
+        :}   
+;
