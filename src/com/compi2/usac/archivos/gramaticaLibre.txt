@@ -1,0 +1,24 @@
+INICIO  ::= OP:n1   
+            {:              
+            :}
+;
+
+OP  ::=  OP:n1 plus OP:n2      
+        {:
+        :}
+    |   OP:n1 minus OP:n2     
+        {:
+        :}
+    |    OP:n1 by OP:n2        
+        {:
+        :}
+    |    OP:n1 divided OP:n2
+        {:
+        :}
+    |    minus OP:n1        
+        {:
+        :}
+    |    number:n1
+        {:
+        :}   
+;
