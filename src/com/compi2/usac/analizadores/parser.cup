@@ -1,6 +1,6 @@
 /**
  * @author Elmer Alay
- * @version 1.0
+ * @version 2.0
  * @since   04-12-2018
 */
 
@@ -24,7 +24,8 @@ parser code
 terminal String number;
 terminal String plus, minus, by, divided;
 
-non terminal INICIO, OP;
+non terminal INICIO;
+non terminal String OP;
 
 precedence left plus, minus;
 precedence left by, divided; 
@@ -32,26 +33,47 @@ precedence left by, divided;
 start with INICIO; 
 
 INICIO  ::= OP:n1   
-            {:              
+            {:            
+                System.out.println("Cadena Reconocida!!!");
+                System.out.println(n1.toString());
             :}
 ;
 
 OP  ::=  OP:n1 plus OP:n2      
         {:
+            float v1 = Float.parseFloat(n1);
+            float v2 = Float.parseFloat(n2);
+            float r = v1 + v2;
+            RESULT = Float.toString(r);
         :}
     |   OP:n1 minus OP:n2     
         {:
+            float v1 = Float.parseFloat(n1);
+            float v2 = Float.parseFloat(n2);
+            float r = v1 - v2;
+            RESULT = Float.toString(r);
         :}
     |    OP:n1 by OP:n2        
         {:
+            float v1 = Float.parseFloat(n1);
+            float v2 = Float.parseFloat(n2);
+            float r = v1 * v2;
+            RESULT = Float.toString(r);
         :}
     |    OP:n1 divided OP:n2
         {:
+            float v1 = Float.parseFloat(n1);
+            float v2 = Float.parseFloat(n2);
+            float r = v1 / v2;
+            RESULT = Float.toString(r);
         :}
     |    minus OP:n1        
         {:
+            float n = Float.parseFloat(n1) * -1;
+            RESULT = Float.toString(n);
         :}
     |    number:n1
         {:
+            RESULT = n1;
         :}   
 ;

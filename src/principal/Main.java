@@ -10,14 +10,14 @@ import java.io.StringReader;
 
 /**
  * @author Elmer Alay
- * @version 1.0
+ * @version 2.0
  * @since   04-12-2018
  */
 public class Main {
     
     public static void main(String args[]){
         try{
-           String lectura = lecturaArchivo("..\\com\\compi2\\usac\\archivos\\ejemplo.txt");
+           String lectura = lecturaArchivo("C:\\Users\\junio\\OneDrive\\Documents\\Universidad\\Cursos\\Compiladores2\\Expresiones\\src\\com\\compi2\\usac\\archivos\\ejemplo.txt");
            ejecutar(lectura);
        }catch(Exception ex){
            
